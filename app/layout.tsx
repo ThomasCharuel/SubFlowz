@@ -6,7 +6,7 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'SubsFlow',
+  title: 'SubFlowz',
   description: 'Generate your personalized flow of content subscriptions',
 };
 
