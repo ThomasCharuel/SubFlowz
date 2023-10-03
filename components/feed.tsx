@@ -7,7 +7,7 @@ const Feed = () => {
   return (
     <div>
       {feedEntries.map((feedEntry) => (
-        <FeedEntry key={feedEntry.id} content={feedEntry} />
+        <FeedEntry key={feedEntry.id} entry={feedEntry} />
       ))}
     </div>
   );

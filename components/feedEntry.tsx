@@ -16,11 +16,11 @@ const FeedEntry = ({ entry }: FeedEntryProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Card Title</CardTitle>
+        <CardTitle>{entry.title}</CardTitle>
         <CardDescription>Card Description</CardDescription>
       </CardHeader>
       <CardContent>
-        <p>Card Content</p>
+        <p>{entry.headline}</p>
       </CardContent>
       <CardFooter>
         <p>Card Footer</p>
