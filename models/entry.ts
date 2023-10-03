@@ -1,6 +1,11 @@
+interface Author {
+  name: string;
+  pictureUrl: string;
+}
+
 interface Entry {
   id: number;
-  author: string;
+  author: Author;
   title: string;
   date: string;
   hero: string;

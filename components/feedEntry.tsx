@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import Image from 'next/image';
 
 interface FeedEntryProps {
   entry: Entry;
@@ -14,16 +15,39 @@ interface FeedEntryProps {
 
 const FeedEntry = ({ entry }: FeedEntryProps) => {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{entry.title}</CardTitle>
-        <CardDescription>Card Description</CardDescription>
+    <Card className="overflow-hidden">
+      <CardHeader className="relative h-52">
+        <Image
+          src={entry.hero}
+          fill={true}
+          alt={'Blog post hero'}
+          className="object-cover"
+        />
       </CardHeader>
       <CardContent>
-        <p>{entry.headline}</p>
+        <div className="flex items-center space-x-2">
+          <Image
+            src={entry.author.pictureUrl}
+            width={40}
+            height={40}
+            alt={`${entry.author.name} profile picture`}
+            className="rounded-full"
+          />
+          <p className="">{entry.author.name}</p>
+        </div>
+        <CardTitle className="mt-4">
+          <a href={entry.url}>{entry.title}</a>
+        </CardTitle>
+        <CardDescription className="mt-2">{entry.headline}</CardDescription>
       </CardContent>
       <CardFooter>
-        <p>Card Footer</p>
+        <a href={entry.url} className="text-center">
+          Read more
+        </a>
+        <div className="flex flex-auto justify-end">
+          <button>Set as to read</button>
+          <button>Set as favs</button>
+        </div>
       </CardFooter>
     </Card>
   );

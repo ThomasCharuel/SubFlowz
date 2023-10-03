@@ -5,7 +5,7 @@ const Feed = () => {
   const feedEntries = useGetFeedEntries();
 
   return (
-    <div>
+    <div className="flex flex-col gap-10">
       {feedEntries.map((feedEntry) => (
         <FeedEntry key={feedEntry.id} entry={feedEntry} />
       ))}
