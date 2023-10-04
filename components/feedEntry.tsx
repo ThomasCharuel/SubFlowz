@@ -7,6 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Star } from 'lucide-react';
+import { FileClock } from 'lucide-react';
 import Image from 'next/image';
 
 interface FeedEntryProps {
@@ -45,8 +47,12 @@ const FeedEntry = ({ entry }: FeedEntryProps) => {
           Read more
         </a>
         <div className="flex flex-auto justify-end">
-          <button>Set as to read</button>
-          <button>Set as favs</button>
+          <button>
+            <FileClock />
+          </button>
+          <button>
+            <Star />
+          </button>
         </div>
       </CardFooter>
     </Card>
