@@ -1,9 +1,9 @@
-import Feed from '@/components/feed';
+import AuthForm from '@/components/authForm';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Feed />
-    </main>
+    <div className="row">
+      <AuthForm />
+    </div>
   );
 }
