@@ -1,10 +1,15 @@
+drop table if exists profiles;
+drop trigger if exists on_auth_user_created on auth.users;
+drop function if exists public.handle_new_user();
+truncate table auth.users restart identity cascade;
+
 CREATE TABLE PROFILES (
 	id uuid not null references auth.users on delete cascade,
 	updated_at timestamp with time zone,
 	username text unique,
-	full_name text,
+	first_name text,
+	last_name text,
 	avatar_url text,
-	website text,
 	primary key (id),
 	constraint username_length check (char_length(username) >= 3)
 );
@@ -39,17 +44,3 @@ create trigger on_auth_user_created
 	after insert on auth.users
 	for each row execute procedure public.handle_new_user();
 
--- Set up Storage!
-insert into storage.buckets (id, name)
-	values ('avatars', 'avatars');
-
--- Set up access controls for storage.
--- See https://supabase.com/docs/guides/storage#policy-examples for more details.
-create policy "Avatar images are publicly accessible." on storage.objects
-  for select using (bucket_id = 'avatars');
-
-create policy "Anyone can upload an avatar." on storage.objects
-  for insert with check (bucket_id = 'avatars');
-
-create policy "Anyone can update their own avatar." on storage.objects
-  for update using (auth.uid() = owner) with check (bucket_id = 'avatars');
