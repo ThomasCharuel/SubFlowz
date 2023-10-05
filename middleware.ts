@@ -1,7 +1,12 @@
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
-import { NextResponse } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 
-import type { NextRequest } from 'next/server';
+const authenticatedUsersReservedRoutes = ['/home', '/settings'];
+const unauthenticatedUsersReservedRoutes = [
+  '/login',
+  '/signup',
+  '/password_reset',
+];
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
@@ -12,15 +17,18 @@ export async function middleware(req: NextRequest) {
   } = await supabase.auth.getUser();
 
   // If user is signed in and the current path is / redirect the user to /home
-  if (user && req.nextUrl.pathname === '/') {
+  if (
+    user &&
+    unauthenticatedUsersReservedRoutes.includes(req.nextUrl.pathname)
+  ) {
     return NextResponse.redirect(new URL('/home', req.url));
   }
-  if (!user && req.nextUrl.pathname !== '/') {
-    return NextResponse.redirect(new URL('/', req.url));
+  if (
+    !user &&
+    authenticatedUsersReservedRoutes.includes(req.nextUrl.pathname)
+  ) {
+    return NextResponse.redirect(new URL('/login', req.url));
   }
+
   return res;
 }
-
-export const config = {
-  matcher: ['/', '/home', '/settings'],
-};
