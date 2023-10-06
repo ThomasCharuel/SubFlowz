@@ -23,6 +23,9 @@ dependencies:
   '@supabase/auth-helpers-nextjs':
     specifier: ^0.8.1
     version: 0.8.1(@supabase/supabase-js@2.38.0)
+  '@supabase/auth-helpers-react':
+    specifier: ^0.4.2
+    version: 0.4.2(@supabase/supabase-js@2.38.0)
   '@supabase/auth-ui-react':
     specifier: ^0.4.5
     version: 0.4.5(@supabase/supabase-js@2.38.0)
@@ -655,6 +658,14 @@ packages:
       '@supabase/auth-helpers-shared': 0.5.0(@supabase/supabase-js@2.38.0)
       '@supabase/supabase-js': 2.38.0
       set-cookie-parser: 2.6.0
+    dev: false
+
+  /@supabase/auth-helpers-react@0.4.2(@supabase/supabase-js@2.38.0):
+    resolution: {integrity: sha512-zRj1leYMKJVYQeHFvZiUzlmHM+ATWFR/V7Q9F0yXSWEnMcNHL0CKnIBqhkjtSQ2trE+YaoCvFEHjxISppxIZXQ==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.19.0
+    dependencies:
+      '@supabase/supabase-js': 2.38.0
     dev: false
 
   /@supabase/auth-helpers-shared@0.5.0(@supabase/supabase-js@2.38.0):
